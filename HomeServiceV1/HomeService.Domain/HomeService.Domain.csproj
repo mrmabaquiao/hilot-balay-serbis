@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{04687D21-BF19-4044-A762-CC661B7DC596}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HomeService.Domain</RootNamespace>
+    <AssemblyName>HomeService.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AspNetRole.cs">
+      <DependentUpon>HomeServiceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>HomeServiceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaim.cs">
+      <DependentUpon>HomeServiceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogin.cs">
+      <DependentUpon>HomeServiceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaseRepository\GenericRepository.cs" />
+    <Compile Include="BaseRepository\UnitOfWork.cs" />
+    <Compile Include="Contact.cs">
+      <DependentUpon>HomeServiceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Country.cs">
+      <DependentUpon>HomeServiceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C__MigrationHistory.cs">
+      <DependentUpon>HomeServiceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetProfileAddressByUsernameResult.cs">
+      <DependentUpon>HomeServiceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HomeServiceDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HomeServiceDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HomeServiceDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HomeServiceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HomeServiceDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HomeServiceDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Profession.cs">
+      <DependentUpon>HomeServiceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Profile.cs">
+      <DependentUpon>HomeServiceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProfileProfession.cs">
+      <DependentUpon>HomeServiceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\IProfileRepository.cs" />
+    <Compile Include="Repository\ProfileRepository.cs" />
+    <Compile Include="sp_GetProfileDetails1_Result.cs">
+      <DependentUpon>HomeServiceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetProfileDetails_Result.cs">
+      <DependentUpon>HomeServiceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Get_CityBy_State_Result.cs">
+      <DependentUpon>HomeServiceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Get_ProfileAddress_Username_Result.cs">
+      <DependentUpon>HomeServiceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Get_ProfileDetails_Username_Result.cs">
+      <DependentUpon>HomeServiceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Get_ServiceLocation_Username_Result.cs">
+      <DependentUpon>HomeServiceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Get_StateBy_CountryCode_Result.cs">
+      <DependentUpon>HomeServiceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_GetProfileAddress.cs">
+      <DependentUpon>HomeServiceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_GetProfileDetails.cs">
+      <DependentUpon>HomeServiceDataModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="HomeServiceDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HomeServiceDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="HomeServiceDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HomeServiceDataModel.edmx</DependentUpon>
+      <LastGenOutput>HomeServiceDataModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="HomeServiceDataModel.edmx.diagram">
+      <DependentUpon>HomeServiceDataModel.edmx</DependentUpon>
+    </None>
+    <None Include="HomeServiceDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HomeServiceDataModel.edmx</DependentUpon>
+      <LastGenOutput>HomeServiceDataModel.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="HomeServiceDataModel.edmx.sql" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

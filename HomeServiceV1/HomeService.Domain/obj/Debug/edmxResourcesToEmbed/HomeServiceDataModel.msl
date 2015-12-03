@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HomeServiceModelStoreContainer" CdmEntityContainer="HomeServiceEntities">
+    <EntitySetMapping Name="Profiles">
+      <EntityTypeMapping TypeName="IsTypeOf(HomeServiceModel.Profile)">
+        <MappingFragment StoreEntitySet="Profiles">
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Professions">
+      <EntityTypeMapping TypeName="IsTypeOf(HomeServiceModel.Profession)">
+        <MappingFragment StoreEntitySet="Professions">
+          <ScalarProperty Name="ProfessionId" ColumnName="ProfessionId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contacts">
+      <EntityTypeMapping TypeName="IsTypeOf(HomeServiceModel.Contact)">
+        <MappingFragment StoreEntitySet="Contacts">
+          <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+          <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProfileProfessions">
+      <EntityTypeMapping TypeName="IsTypeOf(HomeServiceModel.ProfileProfession)">
+        <MappingFragment StoreEntitySet="ProfileProfessions">
+          <ScalarProperty Name="ProfileProfessionId" ColumnName="ProfileProfessionId" />
+          <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+          <ScalarProperty Name="ProfessionId" ColumnName="ProfessionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_GetProfileDetails">
+      <EntityTypeMapping TypeName="HomeServiceModel.vw_GetProfileDetails">
+        <MappingFragment StoreEntitySet="vw_GetProfileDetails">
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Profession" ColumnName="Profession" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="ProfileName" ColumnName="ProfileName" />
+          <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="InsertProfileDetails" FunctionName="HomeServiceModel.Store.sp_InsertProfileDetails" />
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="HomeServiceModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="HomeServiceModel.AspNetRole">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="HomeServiceModel.AspNetUserClaim">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="HomeServiceModel.AspNetUserLogin">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="HomeServiceModel.AspNetUser">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="HomeServiceModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetUser">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="AspNetRole">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="sp_Get_ProfileDetails_Username" FunctionName="HomeServiceModel.Store.sp_Get_ProfileDetails_Username">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HomeServiceModel.sp_Get_ProfileDetails_Username_Result">
+          <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="Profession" ColumnName="Profession" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Insert_ProfileDetails_Username" FunctionName="HomeServiceModel.Store.sp_Insert_ProfileDetails_Username" />
+    <FunctionImportMapping FunctionImportName="GetProfileDetailsByUsername" FunctionName="HomeServiceModel.Store.sp_Get_ProfileDetails_Username">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HomeServiceModel.sp_Get_ProfileDetails_Username_Result">
+          <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="Profession" ColumnName="Profession" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="InsertProfileDetailsByUsername" FunctionName="HomeServiceModel.Store.sp_Insert_ProfileDetails_Username" />
+    <FunctionImportMapping FunctionImportName="sp_Update_ProfileDetails_Username" FunctionName="HomeServiceModel.Store.sp_Update_ProfileDetails_Username" />
+    <FunctionImportMapping FunctionImportName="UpdateProfileDetailsByUsername" FunctionName="HomeServiceModel.Store.sp_Update_ProfileDetails_Username" />
+    <FunctionImportMapping FunctionImportName="sp_Get_ServiceLocation_Username" FunctionName="HomeServiceModel.Store.sp_Get_ServiceLocation_Username">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HomeServiceModel.sp_Get_ServiceLocation_Username_Result">
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetServiceLocationByUsername" FunctionName="HomeServiceModel.Store.sp_Get_ServiceLocation_Username">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HomeServiceModel.sp_Get_ServiceLocation_Username_Result">
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Get_CityBy_State" FunctionName="HomeServiceModel.Store.sp_Get_CityBy_State">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HomeServiceModel.sp_Get_CityBy_State_Result">
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="City" ColumnName="City" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Get_StateBy_CountryCode" FunctionName="HomeServiceModel.Store.sp_Get_StateBy_CountryCode">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HomeServiceModel.sp_Get_StateBy_CountryCode_Result">
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="State" ColumnName="State" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetStateByCountryCode" FunctionName="HomeServiceModel.Store.sp_Get_StateBy_CountryCode">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HomeServiceModel.sp_Get_StateBy_CountryCode_Result">
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="State" ColumnName="State" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetCityByState" FunctionName="HomeServiceModel.Store.sp_Get_CityBy_State">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HomeServiceModel.sp_Get_CityBy_State_Result">
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="City" ColumnName="City" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Insert_ServiceLocation_Profile" FunctionName="HomeServiceModel.Store.sp_Insert_ServiceLocation_Profile" />
+    <FunctionImportMapping FunctionImportName="InsertServiceLocationByProfileUsername" FunctionName="HomeServiceModel.Store.sp_Insert_ServiceLocation_Profile" />
+    <FunctionImportMapping FunctionImportName="sp_Get_ProfileAddress_Username" FunctionName="HomeServiceModel.Store.sp_Get_ProfileAddress_Username">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HomeServiceModel.sp_Get_ProfileAddress_Username_Result">
+          <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="vw_GetProfileAddress">
+      <EntityTypeMapping TypeName="HomeServiceModel.vw_GetProfileAddress">
+        <MappingFragment StoreEntitySet="vw_GetProfileAddress">
+          <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetProfileAddressByUsername" FunctionName="HomeServiceModel.Store.sp_Get_ProfileAddress_Username">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HomeServiceModel.GetProfileAddressByUsernameResult">
+          <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="HomeServiceModel.Country">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

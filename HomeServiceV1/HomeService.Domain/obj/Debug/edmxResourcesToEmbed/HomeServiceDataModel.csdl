@@ -1,0 +1,368 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HomeServiceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="HomeServiceEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Profiles" EntityType="HomeServiceModel.Profile" />
+    <EntitySet Name="Professions" EntityType="HomeServiceModel.Profession" />
+    <EntitySet Name="Contacts" EntityType="HomeServiceModel.Contact" />
+    <AssociationSet Name="ProfileContact" Association="HomeServiceModel.ProfileContact">
+      <End Role="Profile" EntitySet="Profiles" />
+      <End Role="Contact" EntitySet="Contacts" />
+    </AssociationSet>
+    <EntitySet Name="ProfileProfessions" EntityType="HomeServiceModel.ProfileProfession" />
+    <AssociationSet Name="ProfileProfileProfession" Association="HomeServiceModel.ProfileProfileProfession">
+      <End Role="Profile" EntitySet="Profiles" />
+      <End Role="ProfileProfession" EntitySet="ProfileProfessions" />
+    </AssociationSet>
+    <AssociationSet Name="ProfessionProfileProfession" Association="HomeServiceModel.ProfessionProfileProfession">
+      <End Role="Profession" EntitySet="Professions" />
+      <End Role="ProfileProfession" EntitySet="ProfileProfessions" />
+    </AssociationSet>
+    <EntitySet Name="vw_GetProfileDetails" EntityType="HomeServiceModel.vw_GetProfileDetails" />
+    <FunctionImport Name="InsertProfileDetails">
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="ContactNumber" Mode="In" Type="String" />
+      <Parameter Name="Profession" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="C__MigrationHistory" EntityType="HomeServiceModel.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="HomeServiceModel.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="HomeServiceModel.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="HomeServiceModel.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="HomeServiceModel.AspNetUser" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="HomeServiceModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="HomeServiceModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="HomeServiceModel.AspNetUserRoles">
+      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <FunctionImport Name="sp_Get_ProfileDetails_Username" ReturnType="Collection(HomeServiceModel.sp_Get_ProfileDetails_Username_Result)">
+      <Parameter Name="Username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_Insert_ProfileDetails_Username">
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="ContactNumber" Mode="In" Type="String" />
+      <Parameter Name="Profession" Mode="In" Type="String" />
+      <Parameter Name="Username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetProfileDetailsByUsername" ReturnType="Collection(HomeServiceModel.sp_Get_ProfileDetails_Username_Result)">
+      <Parameter Name="Username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="InsertProfileDetailsByUsername">
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="ContactNumber" Mode="In" Type="String" />
+      <Parameter Name="Profession" Mode="In" Type="String" />
+      <Parameter Name="Username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_Update_ProfileDetails_Username">
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="ContactNumber" Mode="In" Type="String" />
+      <Parameter Name="Profession" Mode="In" Type="String" />
+      <Parameter Name="Username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateProfileDetailsByUsername">
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="ContactNumber" Mode="In" Type="String" />
+      <Parameter Name="Profession" Mode="In" Type="String" />
+      <Parameter Name="Username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_Get_ServiceLocation_Username" ReturnType="Collection(HomeServiceModel.sp_Get_ServiceLocation_Username_Result)">
+      <Parameter Name="Username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetServiceLocationByUsername" ReturnType="Collection(HomeServiceModel.sp_Get_ServiceLocation_Username_Result)">
+      <Parameter Name="Username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_Get_CityBy_State" ReturnType="Collection(HomeServiceModel.sp_Get_CityBy_State_Result)">
+      <Parameter Name="StateName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_Get_StateBy_CountryCode" ReturnType="Collection(HomeServiceModel.sp_Get_StateBy_CountryCode_Result)">
+      <Parameter Name="Code" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetStateByCountryCode" ReturnType="Collection(HomeServiceModel.sp_Get_StateBy_CountryCode_Result)">
+      <Parameter Name="Code" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetCityByState" ReturnType="Collection(HomeServiceModel.sp_Get_CityBy_State_Result)">
+      <Parameter Name="StateName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_Insert_ServiceLocation_Profile">
+      <Parameter Name="CityId" Mode="In" Type="Int32" />
+      <Parameter Name="Username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="InsertServiceLocationByProfileUsername">
+      <Parameter Name="CityId" Mode="In" Type="Int32" />
+      <Parameter Name="Username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_Get_ProfileAddress_Username" ReturnType="Collection(HomeServiceModel.sp_Get_ProfileAddress_Username_Result)">
+      <Parameter Name="Username" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="vw_GetProfileAddress" EntityType="HomeServiceModel.vw_GetProfileAddress" />
+    <FunctionImport Name="GetProfileAddressByUsername" ReturnType="Collection(HomeServiceModel.GetProfileAddressByUsernameResult)">
+      <Parameter Name="Username" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="Countries" EntityType="HomeServiceModel.Country" />
+  </EntityContainer>
+  <EntityType Name="Profile">
+    <Key>
+      <PropertyRef Name="ProfileId" />
+    </Key>
+    <Property Name="ProfileId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Contacts" Relationship="HomeServiceModel.ProfileContact" FromRole="Profile" ToRole="Contact" />
+    <NavigationProperty Name="ProfileProfessions" Relationship="HomeServiceModel.ProfileProfileProfession" FromRole="Profile" ToRole="ProfileProfession" />
+    <Property Name="Username" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Profession">
+    <Key>
+      <PropertyRef Name="ProfessionId" />
+    </Key>
+    <Property Name="ProfessionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="ProfileProfessions" Relationship="HomeServiceModel.ProfessionProfileProfession" FromRole="Profession" ToRole="ProfileProfession" />
+  </EntityType>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="ContactId" />
+    </Key>
+    <Property Name="ContactId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ContactNumber" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="IsDefault" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Profile" Relationship="HomeServiceModel.ProfileContact" FromRole="Contact" ToRole="Profile" />
+    <Property Name="ProfileId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="ProfileContact">
+    <End Type="HomeServiceModel.Profile" Role="Profile" Multiplicity="1" />
+    <End Type="HomeServiceModel.Contact" Role="Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profile">
+        <PropertyRef Name="ProfileId" />
+      </Principal>
+      <Dependent Role="Contact">
+        <PropertyRef Name="ProfileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ProfileProfession">
+    <Key>
+      <PropertyRef Name="ProfileProfessionId" />
+    </Key>
+    <Property Name="ProfileProfessionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProfileId" Type="Int32" Nullable="false" />
+    <Property Name="ProfessionId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="ProfileProfileProfession">
+    <End Type="HomeServiceModel.Profile" Role="Profile" Multiplicity="1" />
+    <End Type="HomeServiceModel.ProfileProfession" Role="ProfileProfession" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profile">
+        <PropertyRef Name="ProfileId" />
+      </Principal>
+      <Dependent Role="ProfileProfession">
+        <PropertyRef Name="ProfileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProfessionProfileProfession">
+    <End Type="HomeServiceModel.Profession" Role="Profession" Multiplicity="1" />
+    <End Type="HomeServiceModel.ProfileProfession" Role="ProfileProfession" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profession">
+        <PropertyRef Name="ProfessionId" />
+      </Principal>
+      <Dependent Role="ProfileProfession">
+        <PropertyRef Name="ProfessionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="sp_GetProfileDetails1_Result">
+    <Property Type="Int32" Name="ProfileId" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" />
+    <Property Type="String" Name="ContactNumber" Nullable="false" />
+    <Property Type="String" Name="Profession" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_GetProfileDetails_Result">
+    <Property Type="Int32" Name="ProfileId" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" />
+    <Property Type="String" Name="ContactNumber" Nullable="false" />
+    <Property Type="String" Name="Profession" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="vw_GetProfileDetails">
+    <Key>
+      <PropertyRef Name="ProfileId" />
+      <PropertyRef Name="ProfileName" />
+      <PropertyRef Name="ContactNumber" />
+      <PropertyRef Name="Profession" />
+    </Key>
+    <Property Name="ProfileId" Type="Int32" Nullable="false" />
+    <Property Name="ProfileName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ContactNumber" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Profession" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Username" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="HomeServiceModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="HomeServiceModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="HomeServiceModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="HomeServiceModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="HomeServiceModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+    <NavigationProperty Name="AspNetRoles" Relationship="HomeServiceModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Type="HomeServiceModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="HomeServiceModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaim">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Type="HomeServiceModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="HomeServiceModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogin">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Type="HomeServiceModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+    <End Type="HomeServiceModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+  </Association>
+  <ComplexType Name="sp_Get_ProfileDetails_Username_Result">
+    <Property Type="Int32" Name="ProfileId" Nullable="false" />
+    <Property Type="String" Name="Username" Nullable="false" MaxLength="256" />
+    <Property Type="String" Name="Name" Nullable="false" />
+    <Property Type="String" Name="ContactNumber" Nullable="false" />
+    <Property Type="String" Name="Profession" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_Get_ServiceLocation_Username_Result">
+    <Property Type="String" Name="City" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="State" Nullable="false" MaxLength="150" />
+  </ComplexType>
+  <ComplexType Name="sp_Get_CityBy_State_Result">
+    <Property Type="Int32" Name="CityId" Nullable="false" />
+    <Property Type="String" Name="City" Nullable="false" MaxLength="150" />
+  </ComplexType>
+  <ComplexType Name="sp_Get_StateBy_CountryCode_Result">
+    <Property Type="Int32" Name="StateId" Nullable="false" />
+    <Property Type="String" Name="State" Nullable="false" MaxLength="150" />
+  </ComplexType>
+  <ComplexType Name="sp_Get_ProfileAddress_Username_Result">
+    <Property Type="Int32" Name="ProfileId" Nullable="false" />
+    <Property Type="String" Name="Username" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="Address1" Nullable="false" MaxLength="120" />
+    <Property Type="String" Name="Address2" Nullable="true" MaxLength="120" />
+    <Property Type="String" Name="Address3" Nullable="true" MaxLength="120" />
+    <Property Type="String" Name="City" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="State" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="Country" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="PostalCode" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <EntityType Name="vw_GetProfileAddress">
+    <Key>
+      <PropertyRef Name="ProfileId" />
+      <PropertyRef Name="Address1" />
+      <PropertyRef Name="City" />
+      <PropertyRef Name="State" />
+      <PropertyRef Name="Country" />
+      <PropertyRef Name="PostalCode" />
+      <PropertyRef Name="AddressId" />
+    </Key>
+    <Property Name="ProfileId" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Address1" Type="String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="Address2" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="Address3" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="PostalCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="AddressId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <ComplexType Name="GetProfileAddressByUsernameResult">
+    <Property Type="Int32" Name="ProfileId" Nullable="false" />
+    <Property Type="String" Name="Username" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="Address1" Nullable="false" MaxLength="120" />
+    <Property Type="String" Name="Address2" Nullable="true" MaxLength="120" />
+    <Property Type="String" Name="Address3" Nullable="true" MaxLength="120" />
+    <Property Type="String" Name="City" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="State" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="Country" Nullable="false" MaxLength="150" />
+    <Property Type="Int32" Name="PostalCode" Nullable="false" />
+    <Property Type="Int32" Name="AddressId" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="CountryId" />
+    </Key>
+    <Property Name="CountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

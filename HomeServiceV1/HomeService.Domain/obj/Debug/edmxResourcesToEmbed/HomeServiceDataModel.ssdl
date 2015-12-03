@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HomeServiceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Contacts">
+    <Key>
+      <PropertyRef Name="ContactId" />
+    </Key>
+    <Property Name="ContactId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ContactNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsDefault" Type="bit" Nullable="false" />
+    <Property Name="ProfileId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="CountryId" />
+    </Key>
+    <Property Name="CountryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Professions">
+    <Key>
+      <PropertyRef Name="ProfessionId" />
+    </Key>
+    <Property Name="ProfessionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="ProfileProfessions">
+    <Key>
+      <PropertyRef Name="ProfileProfessionId" />
+    </Key>
+    <Property Name="ProfileProfessionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProfileId" Type="int" Nullable="false" />
+    <Property Name="ProfessionId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Profiles">
+    <Key>
+      <PropertyRef Name="ProfileId" />
+    </Key>
+    <Property Name="ProfileId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="256" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'HomeService.dbo.vw_GetProfileAddress' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_GetProfileAddress">
+    <Key>
+      <PropertyRef Name="ProfileId" />
+      <PropertyRef Name="Address1" />
+      <PropertyRef Name="City" />
+      <PropertyRef Name="State" />
+      <PropertyRef Name="Country" />
+      <PropertyRef Name="PostalCode" />
+      <PropertyRef Name="AddressId" />
+    </Key>
+    <Property Name="ProfileId" Type="int" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="256" />
+    <Property Name="Address1" Type="varchar" MaxLength="120" Nullable="false" />
+    <Property Name="Address2" Type="varchar" MaxLength="120" />
+    <Property Name="Address3" Type="varchar" MaxLength="120" />
+    <Property Name="City" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="State" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Country" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="PostalCode" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="AddressId" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'HomeService.dbo.vw_GetProfileDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_GetProfileDetails">
+    <Key>
+      <PropertyRef Name="ProfileId" />
+      <PropertyRef Name="ProfileName" />
+      <PropertyRef Name="ContactNumber" />
+      <PropertyRef Name="Profession" />
+    </Key>
+    <Property Name="ProfileId" Type="int" Nullable="false" />
+    <Property Name="ProfileName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ContactNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Profession" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="256" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="sp_Get_CityBy_State" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StateName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Get_ProfileAddress_Username" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Get_ProfileDetails_Username" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Get_ServiceLocation_Username" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Get_StateBy_CountryCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Code" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Insert_ProfileDetails_Username" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+    <Parameter Name="ContactNumber" Type="varchar" Mode="In" />
+    <Parameter Name="Profession" Type="varchar" Mode="In" />
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Insert_ServiceLocation_Profile" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CityId" Type="int" Mode="In" />
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_InsertProfileDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+    <Parameter Name="ContactNumber" Type="varchar" Mode="In" />
+    <Parameter Name="Profession" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Update_ProfileDetails_Username" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+    <Parameter Name="ContactNumber" Type="varchar" Mode="In" />
+    <Parameter Name="Profession" Type="varchar" Mode="In" />
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="HomeServiceModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Contacts" EntityType="Self.Contacts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Professions" EntityType="Self.Professions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProfileProfessions" EntityType="Self.ProfileProfessions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Profiles" EntityType="Self.Profiles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vw_GetProfileAddress" EntityType="Self.vw_GetProfileAddress" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_GetProfileAddress].[ProfileId] AS [ProfileId], 
+    [vw_GetProfileAddress].[Username] AS [Username], 
+    [vw_GetProfileAddress].[Address1] AS [Address1], 
+    [vw_GetProfileAddress].[Address2] AS [Address2], 
+    [vw_GetProfileAddress].[Address3] AS [Address3], 
+    [vw_GetProfileAddress].[City] AS [City], 
+    [vw_GetProfileAddress].[State] AS [State], 
+    [vw_GetProfileAddress].[Country] AS [Country], 
+    [vw_GetProfileAddress].[PostalCode] AS [PostalCode], 
+    [vw_GetProfileAddress].[AddressId] AS [AddressId]
+    FROM [dbo].[vw_GetProfileAddress] AS [vw_GetProfileAddress]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_GetProfileDetails" EntityType="Self.vw_GetProfileDetails" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_GetProfileDetails].[ProfileId] AS [ProfileId], 
+    [vw_GetProfileDetails].[ProfileName] AS [ProfileName], 
+    [vw_GetProfileDetails].[ContactNumber] AS [ContactNumber], 
+    [vw_GetProfileDetails].[Profession] AS [Profession], 
+    [vw_GetProfileDetails].[Username] AS [Username]
+    FROM [dbo].[vw_GetProfileDetails] AS [vw_GetProfileDetails]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

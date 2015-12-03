@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c89371ddedb14c2a8ce8328420eed105" Name="Diagram1" >
+        <EntityTypeShape EntityType="HomeServiceModel.Profile" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="HomeServiceModel.Profession" Width="1.5" PointX="6.25" PointY="1.125" />
+        <EntityTypeShape EntityType="HomeServiceModel.Contact" Width="1.5" PointX="2.125" PointY="4.125" />
+        <AssociationConnector Association="HomeServiceModel.ProfileContact" />
+        <EntityTypeShape EntityType="HomeServiceModel.ProfileProfession" Width="1.5" PointX="5" PointY="4.75" />
+        <AssociationConnector Association="HomeServiceModel.ProfileProfileProfession" />
+        <AssociationConnector Association="HomeServiceModel.ProfessionProfileProfession" />
+        <EntityTypeShape EntityType="HomeServiceModel.vw_GetProfileDetails" Width="2.125" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="HomeServiceModel.C__MigrationHistory" Width="1.5" PointX="3.375" PointY="7.75" />
+        <EntityTypeShape EntityType="HomeServiceModel.AspNetRole" Width="1.5" PointX="7.375" PointY="5.5" />
+        <EntityTypeShape EntityType="HomeServiceModel.AspNetUserClaim" Width="1.5" PointX="11.875" PointY="4" />
+        <EntityTypeShape EntityType="HomeServiceModel.AspNetUserLogin" Width="1.5" PointX="11.875" PointY="6.75" />
+        <EntityTypeShape EntityType="HomeServiceModel.AspNetUser" Width="1.5" PointX="9.625" PointY="4.375" />
+        <AssociationConnector Association="HomeServiceModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="HomeServiceModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="HomeServiceModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="HomeServiceModel.vw_GetProfileAddress" Width="1.5" PointX="5.375" PointY="8.75" />
+        <EntityTypeShape EntityType="HomeServiceModel.Country" Width="1.5" PointX="8.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
