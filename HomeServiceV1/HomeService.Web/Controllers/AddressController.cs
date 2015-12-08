@@ -12,39 +12,42 @@ namespace HomeService.Web.Controllers
     {
         // GET: Address
 
-        private UnitOfWork unitOfWork = null;
+      //  private UnitOfWork unitOfWork = null;
 
         public AddressController()
         {
-            unitOfWork = new UnitOfWork();
+        //    unitOfWork = new UnitOfWork();
         }
         public ActionResult Index()
         {
             if (!String.IsNullOrEmpty(User.Identity.Name))
             {
-                var resultList = unitOfWork.GetProfileAddressByUsername(User.Identity.Name);
+                using (var unitOfWork = new UnitOfWork())
+                {                
+                    var resultList = unitOfWork.GetProfileAddressByUsername(User.Identity.Name);
 
-                if (resultList != null)
-                {
-                    var addressList = new List<AddressViewModel>();
-
-                    foreach (var r in resultList)
+                    if (resultList != null)
                     {
-                        var serviceLoc = new AddressViewModel()
-                        {
-                            Address1 = r.Address1,
-                            Address2 = r.Address2,
-                            Address3 = r.Address3,
-                            AddressId = r.AddressId,
-                            City = r.City,
-                            State = r.State,
-                            Country = r.Country,
-                            PostalCode = r.PostalCode
-                        };
-                        addressList.Add(serviceLoc);
-                    }
+                        var addressList = new List<AddressViewModel>();
 
-                    return View(addressList);
+                        foreach (var r in resultList)
+                        {
+                            var serviceLoc = new AddressViewModel()
+                            {
+                                Address1 = r.Address1,
+                                Address2 = r.Address2,
+                                Address3 = r.Address3,
+                                AddressId = r.AddressId,
+                                City = r.City,
+                                State = r.State,
+                                Country = r.Country,
+                                PostalCode = r.PostalCode
+                            };
+                            addressList.Add(serviceLoc);
+                        }
+
+                        return View(addressList);
+                    }
             }
 
             return View(new List<PointOfServiceViewModel>());
@@ -63,12 +66,16 @@ namespace HomeService.Web.Controllers
         public ActionResult Create()
         {
             var addressCreateModel = new AddressCreateModel();
-            var result = unitOfWork.CountryRepository.Get();
-            addressCreateModel.Countries = new List<SelectListItem>();
-           
-           foreach(var res in result)
-            {
-                addressCreateModel.Countries.Add(new SelectListItem { Text = res.Name, Value = res.Code }); 
+            using (var unitOfWork = new UnitOfWork())
+            {               
+                var result = unitOfWork.CountryRepository.Get();
+                addressCreateModel.Countries = new List<SelectListItem>();
+
+                foreach (var res in result)
+                {
+                    addressCreateModel.Countries.Add(new SelectListItem { Text = res.Name, Value = res.Code });
+                }
+             
             }
             return View(addressCreateModel);
         }
@@ -81,11 +88,16 @@ namespace HomeService.Web.Controllers
             {
                 if(ModelState.IsValid)
                 {
-                    //unitOfWork.InsertProfileAddress(addressCreateModel.Address1,
-                    //                                addressCreateModel.Address2,
-                    //                                addressCreateModel.Address3,
-                    //                                addressCreateModel.City,
-                    //                                addressCreateModel.PostalCode);
+
+                    using (var unitIfWork = new UnitOfWork())
+                    {
+                        unitIfWork.InsertProfileAddress(User.Identity.Name, 
+                                                        addressCreateModel.Address1,
+                                                        addressCreateModel.Address2,
+                                                        addressCreateModel.Address3,
+                                                        int.Parse(addressCreateModel.City),
+                                                        addressCreateModel.PostalCode);
+                    }                  
                 }
 
                 return RedirectToAction("Index");
@@ -143,27 +155,28 @@ namespace HomeService.Web.Controllers
         public JsonResult GetStates(string code)
         {
             List<SelectListItem> states = new List<SelectListItem>();
-
-            var result = unitOfWork.GetStateByCountryCode(code);
-            foreach(var res in result)
+            using (var unitOfWork = new UnitOfWork())
             {
-                states.Add(new SelectListItem { Text = res.State, Value = res.State });
-            }
-
-            
+                var result = unitOfWork.GetStateByCountryCode(code);
+                foreach (var res in result)
+                {
+                    states.Add(new SelectListItem { Text = res.State, Value = res.State });
+                }
+            }            
             return Json(new SelectList(states, "Value", "Text"));
         }
 
         public JsonResult GetCities(string state)
         {
             List<SelectListItem> cities = new List<SelectListItem>();
-
-            var result = unitOfWork.GetCityByState(state);
-            foreach (var res in result)
+            using (var unitOfWork = new UnitOfWork())
             {
-                cities.Add(new SelectListItem { Text = res.City, Value = res.CityId.ToString() });
+                var result = unitOfWork.GetCityByState(state);
+                foreach (var res in result)
+                {
+                    cities.Add(new SelectListItem { Text = res.City, Value = res.CityId.ToString() });
+                }
             }
-
             return Json(new SelectList(cities, "Value", "Text"));
         }
     }

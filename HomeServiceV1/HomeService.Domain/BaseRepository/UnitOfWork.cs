@@ -33,7 +33,6 @@ namespace HomeService.Domain
         {
             get
             {
-
                 if (this.profileDetailsRepository == null)
                 {
                     this.profileDetailsRepository = new GenericRepository<vw_GetProfileDetails>(context);
@@ -163,6 +162,12 @@ namespace HomeService.Domain
         {            
             return context.GetProfileAddressByUsername(username).AsQueryable();
         }
+
+        public void InsertProfileAddress(string username, string address1, string address2, string address3, Nullable<int> cityId, Nullable<int> postalCode)
+        {
+            context.InsertProfileAddress(username, address1, address2, address3, cityId, postalCode);
+        }
+
 
     }
 }

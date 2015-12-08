@@ -19,33 +19,36 @@ namespace HomeService.Web.Controllers
 
         public ActionResult Index()
         {
+            var user = new ProfileDetailsViewModel();
             if (String.IsNullOrEmpty(User.Identity.Name))
             {
                 RedirectToAction("Register", "Account");
             }
 
-            var result = unitOfWork.GetProfileDetailsByUsername(User.Identity.Name);
-
-            if (result != null)
+            using (var unitOfWork = new UnitOfWork())
             {
-                var user = new ProfileDetailsViewModel()
+                var result = unitOfWork.GetProfileDetailsByUsername(User.Identity.Name);
+
+                if (result != null)
                 {
-                    Username = result.Username,
-                    Name = result.Name,
-                    ContactNumber = result.ContactNumber,
-                    Profession = result.Profession,
-                    ProfileId = result.ProfileId
-                };
+                    user = new ProfileDetailsViewModel()
+                    {
+                        Username = result.Username,
+                        Name = result.Name,
+                        ContactNumber = result.ContactNumber,
+                        Profession = result.Profession,
+                        ProfileId = result.ProfileId
+                    };
+                    return View(user);
 
-                return View(user);
-            }
-            else
-            {
-                return RedirectToAction("CreateProfile");
-            }
-             
-
-        }
+                }
+                else
+                { 
+                    return RedirectToAction("CreateProfile");
+                }
+            
+            }   
+         }
 
         public ActionResult CreateProfile()
         {
@@ -55,10 +58,8 @@ namespace HomeService.Web.Controllers
         [HttpPost]
         public ActionResult CreateProfile(ProfileDetailsCreateModel profileCreateModel)
         {
-
             try
             {
-                // TODO: Add insert logic here
                 if (ModelState.IsValid)
                 {
                     unitOfWork.InserProfileDetailsByUsername(profileCreateModel.Name, profileCreateModel.ContactNumber, profileCreateModel.Profession,User.Identity.Name);
@@ -89,7 +90,6 @@ namespace HomeService.Web.Controllers
             return View();
         }
 
-        // GET: Profile/Edit/5
         public ActionResult Edit()
         {
             if (!String.IsNullOrEmpty(User.Identity.Name))

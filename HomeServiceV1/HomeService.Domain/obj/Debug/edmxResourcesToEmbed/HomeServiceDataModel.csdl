@@ -104,6 +104,22 @@
       <Parameter Name="Username" Mode="In" Type="String" />
     </FunctionImport>
     <EntitySet Name="Countries" EntityType="HomeServiceModel.Country" />
+    <FunctionImport Name="sp_Insert_ProfileAddress">
+      <Parameter Name="Username" Mode="In" Type="String" />
+      <Parameter Name="Address1" Mode="In" Type="String" />
+      <Parameter Name="Address2" Mode="In" Type="String" />
+      <Parameter Name="Address3" Mode="In" Type="String" />
+      <Parameter Name="CityId" Mode="In" Type="Int32" />
+      <Parameter Name="PostalCode" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="InsertProfileAddress">
+      <Parameter Name="Username" Mode="In" Type="String" />
+      <Parameter Name="Address1" Mode="In" Type="String" />
+      <Parameter Name="Address2" Mode="In" Type="String" />
+      <Parameter Name="Address3" Mode="In" Type="String" />
+      <Parameter Name="CityId" Mode="In" Type="Int32" />
+      <Parameter Name="PostalCode" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="Profile">
     <Key>

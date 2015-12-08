@@ -256,5 +256,63 @@ namespace HomeService.Domain
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProfileAddressByUsernameResult>("GetProfileAddressByUsername", usernameParameter);
         }
+    
+        public virtual int sp_Insert_ProfileAddress(string username, string address1, string address2, string address3, Nullable<int> cityId, Nullable<int> postalCode)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            var address1Parameter = address1 != null ?
+                new ObjectParameter("Address1", address1) :
+                new ObjectParameter("Address1", typeof(string));
+    
+            var address2Parameter = address2 != null ?
+                new ObjectParameter("Address2", address2) :
+                new ObjectParameter("Address2", typeof(string));
+    
+            var address3Parameter = address3 != null ?
+                new ObjectParameter("Address3", address3) :
+                new ObjectParameter("Address3", typeof(string));
+    
+            var cityIdParameter = cityId.HasValue ?
+                new ObjectParameter("CityId", cityId) :
+                new ObjectParameter("CityId", typeof(int));
+    
+            var postalCodeParameter = postalCode.HasValue ?
+                new ObjectParameter("PostalCode", postalCode) :
+                new ObjectParameter("PostalCode", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Insert_ProfileAddress", usernameParameter, address1Parameter, address2Parameter, address3Parameter, cityIdParameter, postalCodeParameter);
+        }
+    
+        public virtual int InsertProfileAddress(string username, string address1, string address2, string address3, Nullable<int> cityId, Nullable<int> postalCode)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            var address1Parameter = address1 != null ?
+                new ObjectParameter("Address1", address1) :
+                new ObjectParameter("Address1", typeof(string));
+    
+            var address2Parameter = address2 != null ?
+                new ObjectParameter("Address2", address2) :
+                new ObjectParameter("Address2", typeof(string));
+    
+            var address3Parameter = address3 != null ?
+                new ObjectParameter("Address3", address3) :
+                new ObjectParameter("Address3", typeof(string));
+    
+            var cityIdParameter = cityId.HasValue ?
+                new ObjectParameter("CityId", cityId) :
+                new ObjectParameter("CityId", typeof(int));
+    
+            var postalCodeParameter = postalCode.HasValue ?
+                new ObjectParameter("PostalCode", postalCode) :
+                new ObjectParameter("PostalCode", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertProfileAddress", usernameParameter, address1Parameter, address2Parameter, address3Parameter, cityIdParameter, postalCodeParameter);
+        }
     }
 }

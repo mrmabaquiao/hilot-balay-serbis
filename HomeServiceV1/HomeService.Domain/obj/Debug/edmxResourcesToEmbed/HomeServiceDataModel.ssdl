@@ -211,6 +211,14 @@ warning 6002: The table/view 'HomeService.dbo.vw_GetProfileDetails' does not hav
   <Function Name="sp_Get_StateBy_CountryCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Code" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="sp_Insert_ProfileAddress" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+    <Parameter Name="Address1" Type="varchar" Mode="In" />
+    <Parameter Name="Address2" Type="varchar" Mode="In" />
+    <Parameter Name="Address3" Type="varchar" Mode="In" />
+    <Parameter Name="CityId" Type="int" Mode="In" />
+    <Parameter Name="PostalCode" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_Insert_ProfileDetails_Username" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Name" Type="varchar" Mode="In" />
     <Parameter Name="ContactNumber" Type="varchar" Mode="In" />

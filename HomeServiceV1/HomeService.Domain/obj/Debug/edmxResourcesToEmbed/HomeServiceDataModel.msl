@@ -245,5 +245,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_Insert_ProfileAddress" FunctionName="HomeServiceModel.Store.sp_Insert_ProfileAddress" />
+    <FunctionImportMapping FunctionImportName="InsertProfileAddress" FunctionName="HomeServiceModel.Store.sp_Insert_ProfileAddress" />
   </EntityContainerMapping>
 </Mapping>
