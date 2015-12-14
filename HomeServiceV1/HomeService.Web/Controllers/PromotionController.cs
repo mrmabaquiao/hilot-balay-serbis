@@ -14,10 +14,38 @@ namespace HomeService.Web.Controllers
         // GET: Promotion
         public ActionResult Index()
         {
-            List<PromotionViewModel> promotions = new List<PromotionViewModel>();
+           var promotion = new PromotionViewModel();
+            using (var unitOfWork = new UnitOfWork())
+            {
+               
+               var result = unitOfWork.GetPromotionDetailByUsername(User.Identity.Name);
 
+                if (result != null)
+                {
+                    promotion = new PromotionViewModel()
+                    {
+                        PromotionId = result.PromotionId,
+                        Description = result.Description,
+                        EndDate = result.EndDate,
+                        Expertise = result.Expertise,
+                        Price = result.Price,
+                        StartDate = result.StartDate
 
-            return View(promotions);
+                    };
+                    var resultTags = unitOfWork.GetPromotionTagsByPromotionId(promotion.PromotionId).Select(x => new TagViewModel()
+                    {
+                        Tag = x.Tag,
+                        TagId = x.TagId
+
+                    }
+                    );
+
+                    promotion.Tags = resultTags.ToList();
+                }
+               
+
+            }
+                return View(promotion);
         }
 
         // GET: Promotion/Details/5
@@ -29,7 +57,9 @@ namespace HomeService.Web.Controllers
         // GET: Promotion/Create
         public ActionResult Create()
         {
-            return View();
+            var promotion = new PromotionCreateModel();
+           
+            return View(promotion);
         }
 
         // POST: Promotion/Create
@@ -38,7 +68,12 @@ namespace HomeService.Web.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+
+
+                }
+              
 
                 return RedirectToAction("Index");
             }

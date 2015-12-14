@@ -247,5 +247,40 @@
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="sp_Insert_ProfileAddress" FunctionName="HomeServiceModel.Store.sp_Insert_ProfileAddress" />
     <FunctionImportMapping FunctionImportName="InsertProfileAddress" FunctionName="HomeServiceModel.Store.sp_Insert_ProfileAddress" />
+    <FunctionImportMapping FunctionImportName="sp_Get_PromotionDetails_Username" FunctionName="HomeServiceModel.Store.sp_Get_PromotionDetails_Username">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HomeServiceModel.sp_Get_PromotionDetails_Username_Result">
+          <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+          <ScalarProperty Name="PromotionId" ColumnName="PromotionId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="Expertise" ColumnName="Expertise" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetPromotionDetailsByUsername" FunctionName="HomeServiceModel.Store.sp_Get_PromotionDetails_Username">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HomeServiceModel.PromotionDetails">
+          <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+          <ScalarProperty Name="PromotionId" ColumnName="PromotionId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="Expertise" ColumnName="Expertise" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Get_PromotionTags_PromotionId" FunctionName="HomeServiceModel.Store.sp_Get_PromotionTags_PromotionId" />
+    <FunctionImportMapping FunctionImportName="GetPromotionTagsByPromotionId" FunctionName="HomeServiceModel.Store.sp_Get_PromotionTags_PromotionId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HomeServiceModel.PromotionTag">
+          <ScalarProperty Name="Tag" ColumnName="Tag" />
+          <ScalarProperty Name="TagId" ColumnName="TagId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

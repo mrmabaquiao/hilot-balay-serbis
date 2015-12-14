@@ -17,4 +17,3 @@ D:\Projects\HomeServiceGit\HomeServiceV1\HomeService.Domain\bin\Debug\EntityFram
 D:\Projects\HomeServiceGit\HomeServiceV1\HomeService.Domain\bin\Debug\EntityFramework.SqlServer.xml
 D:\Projects\HomeServiceGit\HomeServiceV1\HomeService.Domain\obj\Debug\HomeService.Domain.dll
 D:\Projects\HomeServiceGit\HomeServiceV1\HomeService.Domain\obj\Debug\HomeService.Domain.pdb
-D:\Projects\HomeServiceGit\HomeServiceV1\HomeService.Domain\obj\Debug\HomeService.Domain.csprojResolveAssemblyReference.cache

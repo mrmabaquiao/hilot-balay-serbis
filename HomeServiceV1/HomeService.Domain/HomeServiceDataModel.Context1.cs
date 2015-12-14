@@ -314,5 +314,41 @@ namespace HomeService.Domain
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertProfileAddress", usernameParameter, address1Parameter, address2Parameter, address3Parameter, cityIdParameter, postalCodeParameter);
         }
+    
+        public virtual ObjectResult<sp_Get_PromotionDetails_Username_Result> sp_Get_PromotionDetails_Username(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Get_PromotionDetails_Username_Result>("sp_Get_PromotionDetails_Username", usernameParameter);
+        }
+    
+        public virtual ObjectResult<PromotionDetails> GetPromotionDetailsByUsername(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PromotionDetails>("GetPromotionDetailsByUsername", usernameParameter);
+        }
+    
+        public virtual ObjectResult<string> sp_Get_PromotionTags_PromotionId(Nullable<int> promotionId)
+        {
+            var promotionIdParameter = promotionId.HasValue ?
+                new ObjectParameter("PromotionId", promotionId) :
+                new ObjectParameter("PromotionId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("sp_Get_PromotionTags_PromotionId", promotionIdParameter);
+        }
+    
+        public virtual ObjectResult<PromotionTag> GetPromotionTagsByPromotionId(Nullable<int> promotionId)
+        {
+            var promotionIdParameter = promotionId.HasValue ?
+                new ObjectParameter("PromotionId", promotionId) :
+                new ObjectParameter("PromotionId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PromotionTag>("GetPromotionTagsByPromotionId", promotionIdParameter);
+        }
     }
 }

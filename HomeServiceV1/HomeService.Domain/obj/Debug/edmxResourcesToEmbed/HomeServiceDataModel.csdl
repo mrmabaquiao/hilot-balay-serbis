@@ -120,6 +120,18 @@
       <Parameter Name="CityId" Mode="In" Type="Int32" />
       <Parameter Name="PostalCode" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="sp_Get_PromotionDetails_Username" ReturnType="Collection(HomeServiceModel.sp_Get_PromotionDetails_Username_Result)">
+      <Parameter Name="Username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetPromotionDetailsByUsername" ReturnType="Collection(HomeServiceModel.PromotionDetails)">
+      <Parameter Name="Username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_Get_PromotionTags_PromotionId" ReturnType="Collection(String)">
+      <Parameter Name="PromotionId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetPromotionTagsByPromotionId" ReturnType="Collection(HomeServiceModel.PromotionTag)">
+      <Parameter Name="PromotionId" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="Profile">
     <Key>
@@ -381,4 +393,26 @@
     <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
   </EntityType>
+  <ComplexType Name="sp_Get_PromotionDetails_Username_Result">
+    <Property Type="Int32" Name="ProfileId" Nullable="false" />
+    <Property Type="Int32" Name="PromotionId" Nullable="false" />
+    <Property Type="String" Name="Description" Nullable="true" MaxLength="256" />
+    <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="DateTime" Name="StartDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="EndDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Expertise" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="PromotionDetails">
+    <Property Type="Int32" Name="ProfileId" Nullable="false" />
+    <Property Type="Int32" Name="PromotionId" Nullable="false" />
+    <Property Type="String" Name="Description" Nullable="true" MaxLength="256" />
+    <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="DateTime" Name="StartDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="EndDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Expertise" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="PromotionTag">
+    <Property Type="String" Name="Tag" Nullable="true" MaxLength="50" />
+    <Property Type="Int64" Name="TagId" Nullable="false" />
+  </ComplexType>
 </Schema>

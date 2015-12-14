@@ -210,6 +210,12 @@ warning 6002: The table/view 'HomeService.dbo.vw_GetProfileDetails' does not hav
         <Function Name="sp_Get_ProfileDetails_Username" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Username" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="sp_Get_PromotionDetails_Username" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Username" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Get_PromotionTags_PromotionId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PromotionId" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_Get_ServiceLocation_Username" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Username" Type="nvarchar" Mode="In" />
         </Function>
@@ -420,6 +426,18 @@ warning 6002: The table/view 'HomeService.dbo.vw_GetProfileDetails' does not hav
             <Parameter Name="Address3" Mode="In" Type="String" />
             <Parameter Name="CityId" Mode="In" Type="Int32" />
             <Parameter Name="PostalCode" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Get_PromotionDetails_Username" ReturnType="Collection(HomeServiceModel.sp_Get_PromotionDetails_Username_Result)">
+          <Parameter Name="Username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetPromotionDetailsByUsername" ReturnType="Collection(HomeServiceModel.PromotionDetails)">
+          <Parameter Name="Username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Get_PromotionTags_PromotionId" ReturnType="Collection(String)">
+          <Parameter Name="PromotionId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetPromotionTagsByPromotionId" ReturnType="Collection(HomeServiceModel.PromotionTag)">
+          <Parameter Name="PromotionId" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="Profile">
@@ -683,6 +701,28 @@ warning 6002: The table/view 'HomeService.dbo.vw_GetProfileDetails' does not hav
           <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
+        <ComplexType Name="sp_Get_PromotionDetails_Username_Result">
+          <Property Type="Int32" Name="ProfileId" Nullable="false" />
+          <Property Type="Int32" Name="PromotionId" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="256" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="StartDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="EndDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Expertise" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="PromotionDetails" >
+          <Property Type="Int32" Name="ProfileId" Nullable="false" />
+          <Property Type="Int32" Name="PromotionId" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="256" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="StartDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="EndDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Expertise" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="PromotionTag" >
+          <Property Type="String" Name="Tag" Nullable="true" MaxLength="50" />
+          <Property Type="Int64" Name="TagId" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -935,6 +975,41 @@ warning 6002: The table/view 'HomeService.dbo.vw_GetProfileDetails' does not hav
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="sp_Insert_ProfileAddress" FunctionName="HomeServiceModel.Store.sp_Insert_ProfileAddress" />
           <FunctionImportMapping FunctionImportName="InsertProfileAddress" FunctionName="HomeServiceModel.Store.sp_Insert_ProfileAddress" />
+          <FunctionImportMapping FunctionImportName="sp_Get_PromotionDetails_Username" FunctionName="HomeServiceModel.Store.sp_Get_PromotionDetails_Username">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HomeServiceModel.sp_Get_PromotionDetails_Username_Result">
+                <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+                <ScalarProperty Name="PromotionId" ColumnName="PromotionId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Expertise" ColumnName="Expertise" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetPromotionDetailsByUsername" FunctionName="HomeServiceModel.Store.sp_Get_PromotionDetails_Username">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HomeServiceModel.PromotionDetails" >
+                <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+                <ScalarProperty Name="PromotionId" ColumnName="PromotionId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Expertise" ColumnName="Expertise" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Get_PromotionTags_PromotionId" FunctionName="HomeServiceModel.Store.sp_Get_PromotionTags_PromotionId" />
+          <FunctionImportMapping FunctionImportName="GetPromotionTagsByPromotionId" FunctionName="HomeServiceModel.Store.sp_Get_PromotionTags_PromotionId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HomeServiceModel.PromotionTag">
+                <ScalarProperty Name="Tag" ColumnName="Tag" />
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

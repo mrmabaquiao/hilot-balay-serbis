@@ -168,6 +168,21 @@ namespace HomeService.Domain
             context.InsertProfileAddress(username, address1, address2, address3, cityId, postalCode);
         }
 
+        public IQueryable<PromotionDetails> GetPromotionDetailsByUsername(string username)
+        {
+           return context.GetPromotionDetailsByUsername(username).AsQueryable();
+        }
+
+        public PromotionDetails GetPromotionDetailByUsername(string username)
+        {
+            return context.GetPromotionDetailsByUsername(username).FirstOrDefault();
+        }
+
+        public IQueryable<PromotionTag> GetPromotionTagsByPromotionId(Nullable<int> promotionId)
+        {
+            return context.GetPromotionTagsByPromotionId(promotionId).AsQueryable();
+        }
+
 
     }
 }

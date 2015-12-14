@@ -22,7 +22,7 @@ namespace HomeService.Web.Controllers
             var user = new ProfileDetailsViewModel();
             if (String.IsNullOrEmpty(User.Identity.Name))
             {
-                RedirectToAction("Register", "Account");
+                RedirectToAction("Login", "Account");
             }
 
             using (var unitOfWork = new UnitOfWork())

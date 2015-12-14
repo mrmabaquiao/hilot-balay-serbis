@@ -59,7 +59,7 @@ namespace HomeService.Web.Controllers
                 if (ModelState.IsValid)
                 {   
                     unitOfWork.InsertProfileDetails(profileCreateModel.Name, profileCreateModel.ContactNumber, profileCreateModel.Profession);
-                    unitOfWork.Save();      
+                   
                 }
 
                 return RedirectToAction("Index");

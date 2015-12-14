@@ -9,16 +9,16 @@ namespace HomeService.Web.Models
     {
         public int PromotionId { get; set; }
         public string Expertise { get; set; }
-        public double Price { get; set; }
+        public Nullable<decimal> Price { get; set; }
         public string Description { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public Nullable<DateTime> StartDate { get; set; }
+        public Nullable<DateTime> EndDate { get; set; }
         public List<TagViewModel> Tags { get; set; }
     }
 
     public class TagViewModel
     {
-        public int TagId { get; set; }
+        public long TagId { get; set; }
         public string Tag { get; set; }
     }
 }
