@@ -231,6 +231,17 @@ warning 6002: The table/view 'HomeService.dbo.vw_GetProfileDetails' does not hav
     <Parameter Name="Profession" Type="varchar" Mode="In" />
     <Parameter Name="Username" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="sp_Insert_Promotion_Tag" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PromotionId" Type="int" Mode="In" />
+    <Parameter Name="Tag" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Insert_PromotionDetails_Username" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Price" Type="decimal" Mode="In" />
+    <Parameter Name="Description" Type="varchar" Mode="In" />
+    <Parameter Name="StartDate" Type="datetime" Mode="In" />
+    <Parameter Name="EndDate" Type="datetime" Mode="In" />
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="sp_Insert_ServiceLocation_Profile" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="CityId" Type="int" Mode="In" />
     <Parameter Name="Username" Type="nvarchar" Mode="In" />

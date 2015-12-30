@@ -282,5 +282,9 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Insert_Promotion_Tag" FunctionName="HomeServiceModel.Store.sp_Insert_Promotion_Tag" />
+    <FunctionImportMapping FunctionImportName="sp_Insert_PromotionDetails_Username" FunctionName="HomeServiceModel.Store.sp_Insert_PromotionDetails_Username" />
+    <FunctionImportMapping FunctionImportName="InsertPromotionDetailsByUsername" FunctionName="HomeServiceModel.Store.sp_Insert_PromotionDetails_Username" />
+    <FunctionImportMapping FunctionImportName="InsertPromotionTag" FunctionName="HomeServiceModel.Store.sp_Insert_Promotion_Tag" />
   </EntityContainerMapping>
 </Mapping>

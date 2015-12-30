@@ -25,7 +25,14 @@ namespace HomeService.Web
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                        //"~/Content/bootstrap-theme.css",
+                        "~/Content/slate-bootstrap-green.css",
+                       "~/Content/site.css",
+                      "~/Content/bootstrap-datetimepicker.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/bsdatetimepicker").Include(
+                          "~/Scripts/moment.min.js",                       
+                        "~/Scripts/bootstrap-datetimepicker.js"));
         }
     }
 }

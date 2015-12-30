@@ -132,6 +132,28 @@
     <FunctionImport Name="GetPromotionTagsByPromotionId" ReturnType="Collection(HomeServiceModel.PromotionTag)">
       <Parameter Name="PromotionId" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="sp_Insert_Promotion_Tag">
+      <Parameter Name="PromotionId" Mode="In" Type="Int32" />
+      <Parameter Name="Tag" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_Insert_PromotionDetails_Username">
+      <Parameter Name="Price" Mode="In" Type="Decimal" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+      <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="InsertPromotionDetailsByUsername" ReturnType="Collection(Int32)">
+      <Parameter Name="Price" Mode="In" Type="Decimal" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+      <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="InsertPromotionTag">
+      <Parameter Name="PromotionId" Mode="In" Type="Int32" />
+      <Parameter Name="Tag" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="Profile">
     <Key>

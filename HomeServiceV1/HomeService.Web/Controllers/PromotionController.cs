@@ -42,8 +42,10 @@ namespace HomeService.Web.Controllers
 
                     promotion.Tags = resultTags.ToList();
                 }
-               
-
+                else
+                {
+                    return RedirectToAction("Create");
+                }             
             }
                 return View(promotion);
         }
@@ -64,20 +66,43 @@ namespace HomeService.Web.Controllers
 
         // POST: Promotion/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(PromotionCreateModel promotion)
         {
+            String[] stringList = new String[50];
             try
             {
                 if (ModelState.IsValid)
                 {
+                    if (!String.IsNullOrEmpty(promotion.Tags))
+                    {
+                         stringList = promotion.Tags.Split(',');
 
+                    }
+
+                    using (var unitOfWork = new UnitOfWork())
+                    {
+                        var promId = unitOfWork.InsertPromotionDetailsByUsername(promotion.Price,promotion.Description,promotion.StartDate,promotion.EndDate,User.Identity.Name);
+                        if (promId.HasValue)
+                        {
+                            foreach (var s in stringList.ToList())
+                            {
+                                if (!String.IsNullOrEmpty(s))
+                                {
+                                    var tag = s.Trim();
+                                    unitOfWork.InsertPromotionTag(promId, tag);
+                                }
+
+                            }
+                        }
+
+
+                    }
 
                 }
-              
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
                 return View();
             }

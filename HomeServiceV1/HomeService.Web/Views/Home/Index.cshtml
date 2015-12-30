@@ -23,10 +23,13 @@
         </dd>     
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Update My Profile", "Edit") |
-    @Html.ActionLink("View Location Services", "Index","LocationService") |
-    @Html.ActionLink("View My Address List", "Index","Address") |
-    @Html.ActionLink("Promote Service", "Index", "Promotion")
 
+ 
+    <div class="btn-group btn-group-justified">
+        @Html.ActionLink("Update My Profile", "Edit","", new { @class = "btn btn-primary" })
+        @Html.ActionLink("View Location Services", "Index", "LocationService", "", new { @class = "btn btn-primary" })
+        @Html.ActionLink("View My Address List", "Index", "Address", "", new { @class = "btn btn-primary" })
+        @Html.ActionLink("Promote Service", "Index", "Promotion", "", new { @class = "btn btn-primary" })
+     
+    </div>
 </p>

@@ -236,6 +236,17 @@ warning 6002: The table/view 'HomeService.dbo.vw_GetProfileDetails' does not hav
           <Parameter Name="Profession" Type="varchar" Mode="In" />
           <Parameter Name="Username" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="sp_Insert_Promotion_Tag" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PromotionId" Type="int" Mode="In" />
+          <Parameter Name="Tag" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Insert_PromotionDetails_Username" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Price" Type="decimal" Mode="In" />
+          <Parameter Name="Description" Type="varchar" Mode="In" />
+          <Parameter Name="StartDate" Type="datetime" Mode="In" />
+          <Parameter Name="EndDate" Type="datetime" Mode="In" />
+          <Parameter Name="Username" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="sp_Insert_ServiceLocation_Profile" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="CityId" Type="int" Mode="In" />
           <Parameter Name="Username" Type="nvarchar" Mode="In" />
@@ -438,6 +449,28 @@ warning 6002: The table/view 'HomeService.dbo.vw_GetProfileDetails' does not hav
           </FunctionImport>
           <FunctionImport Name="GetPromotionTagsByPromotionId" ReturnType="Collection(HomeServiceModel.PromotionTag)">
           <Parameter Name="PromotionId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Insert_Promotion_Tag">
+            <Parameter Name="PromotionId" Mode="In" Type="Int32" />
+            <Parameter Name="Tag" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Insert_PromotionDetails_Username">
+            <Parameter Name="Price" Mode="In" Type="Decimal" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+            <Parameter Name="Username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertPromotionDetailsByUsername" ReturnType="Collection(Int32)">
+            <Parameter Name="Price" Mode="In" Type="Decimal" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+            <Parameter Name="Username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertPromotionTag">
+            <Parameter Name="PromotionId" Mode="In" Type="Int32" />
+            <Parameter Name="Tag" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="Profile">
@@ -1010,6 +1043,10 @@ warning 6002: The table/view 'HomeService.dbo.vw_GetProfileDetails' does not hav
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Insert_Promotion_Tag" FunctionName="HomeServiceModel.Store.sp_Insert_Promotion_Tag" />
+          <FunctionImportMapping FunctionImportName="sp_Insert_PromotionDetails_Username" FunctionName="HomeServiceModel.Store.sp_Insert_PromotionDetails_Username" />
+          <FunctionImportMapping FunctionImportName="InsertPromotionDetailsByUsername" FunctionName="HomeServiceModel.Store.sp_Insert_PromotionDetails_Username" />
+          <FunctionImportMapping FunctionImportName="InsertPromotionTag" FunctionName="HomeServiceModel.Store.sp_Insert_Promotion_Tag" />
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

@@ -39,6 +39,7 @@ namespace HomeService.Domain
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<vw_GetProfileAddress> vw_GetProfileAddress { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
+
     
         public virtual int InsertProfileDetails(string name, string contactNumber, string profession)
         {
@@ -349,6 +350,83 @@ namespace HomeService.Domain
                 new ObjectParameter("PromotionId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PromotionTag>("GetPromotionTagsByPromotionId", promotionIdParameter);
+        }
+    
+        public virtual int sp_Insert_Promotion_Tag(Nullable<int> promotionId, string tag)
+        {
+            var promotionIdParameter = promotionId.HasValue ?
+                new ObjectParameter("PromotionId", promotionId) :
+                new ObjectParameter("PromotionId", typeof(int));
+    
+            var tagParameter = tag != null ?
+                new ObjectParameter("Tag", tag) :
+                new ObjectParameter("Tag", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Insert_Promotion_Tag", promotionIdParameter, tagParameter);
+        }
+    
+        public virtual int sp_Insert_PromotionDetails_Username(Nullable<decimal> price, string description, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, string username)
+        {
+            var priceParameter = price.HasValue ?
+                new ObjectParameter("Price", price) :
+                new ObjectParameter("Price", typeof(decimal));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("Description", description) :
+                new ObjectParameter("Description", typeof(string));
+    
+            var startDateParameter = startDate.HasValue ?
+                new ObjectParameter("StartDate", startDate) :
+                new ObjectParameter("StartDate", typeof(System.DateTime));
+    
+            var endDateParameter = endDate.HasValue ?
+                new ObjectParameter("EndDate", endDate) :
+                new ObjectParameter("EndDate", typeof(System.DateTime));
+    
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Insert_PromotionDetails_Username", priceParameter, descriptionParameter, startDateParameter, endDateParameter, usernameParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> InsertPromotionDetailsByUsername(Nullable<decimal> price, string description, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, string username)
+        {
+            var priceParameter = price.HasValue ?
+                new ObjectParameter("Price", price) :
+                new ObjectParameter("Price", typeof(decimal));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("Description", description) :
+                new ObjectParameter("Description", typeof(string));
+    
+            var startDateParameter = startDate.HasValue ?
+                new ObjectParameter("StartDate", startDate) :
+                new ObjectParameter("StartDate", typeof(System.DateTime));
+    
+            var endDateParameter = endDate.HasValue ?
+                new ObjectParameter("EndDate", endDate) :
+                new ObjectParameter("EndDate", typeof(System.DateTime));
+    
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("InsertPromotionDetailsByUsername", priceParameter, descriptionParameter, startDateParameter, endDateParameter, usernameParameter);
+        }
+    
+        public virtual int InsertPromotionTag(Nullable<int> promotionId, string tag)
+        {
+            var promotionIdParameter = promotionId.HasValue ?
+                new ObjectParameter("PromotionId", promotionId) :
+                new ObjectParameter("PromotionId", typeof(int));
+    
+            var tagParameter = tag != null ?
+                new ObjectParameter("Tag", tag) :
+                new ObjectParameter("Tag", typeof(string));
+           
+
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertPromotionTag", promotionIdParameter, tagParameter);
         }
     }
 }

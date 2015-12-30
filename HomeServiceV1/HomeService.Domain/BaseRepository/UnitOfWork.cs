@@ -183,6 +183,16 @@ namespace HomeService.Domain
             return context.GetPromotionTagsByPromotionId(promotionId).AsQueryable();
         }
 
+        public int? InsertPromotionDetailsByUsername(Nullable<decimal> price, string description, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, string username)
+        {
+           return context.InsertPromotionDetailsByUsername(price, description, startDate, endDate, username).SingleOrDefault();
+        }
+
+        public void InsertPromotionTag(Nullable<int> promotionId, string tag)
+        {
+            context.InsertPromotionTag(promotionId, tag);
+        }
+
 
     }
 }
