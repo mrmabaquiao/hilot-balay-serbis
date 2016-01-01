@@ -76,9 +76,9 @@ namespace HomeService.Web.Controllers
 
         }       
 
-        public ActionResult About()
+        public ActionResult Search()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Search here.";
 
             return View();
         }
